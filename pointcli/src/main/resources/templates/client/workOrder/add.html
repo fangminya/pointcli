@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+this is add work order~
+<form id="entity-form" th:action="@{/workOrder/doAddOrder}" th:object="${workOrder}" method="post" enctype="multipart/form-data" >
+    <table>
+        <tr>
+            <td class="col-md-1" style="padding: 0;">工单类型</td>
+            <td style="padding-left: 10px;">
+                <select th:field="*{orderType}" class="form-control code-select" data-clazz="WorkOrderType" data-empty="" data-value="${entity.agentType}">
+                </select>
+            </td>
+            <td>
+            </td>
+        </tr>
+        <tr class="ht15"></tr>
+        <tr>
+            <td class="col-md-2" style="padding: 0;">工单主题</td>
+            <td style="padding-left: 10px;">
+                <input type="text" th:field="*{theme}" placeholder=""/>
+            </td>
+            <td></td>
+        </tr>
+        <tr class="ht15"></tr>
+        <tr>
+            <td class="col-md-2" style="padding: 0;">工单内容</td>
+            <td style="padding-left: 10px;">
+                <textarea rows="8" cols="80" th:field="*{replyContent}" placeholder=""></textarea>
+            </td>
+            <td></td>
+        </tr>
+        <tr class="ht15"></tr>
+        <tr>
+            <td class="col-md-2"  style="padding: 0;">附件</td>
+            <td colspan="2" style="padding-left: 10px;">
+                <input type="hidden" th:field="*{file}" class="text-input " value=""/>
+                <input style="display: none;" type="file" id="fileUpload" name="fileUpload">
+                <input type="button" class="button" id="upload" onclick="uploadFile();" value="上传">
+                <img id="img-preview" alt="图片预览" style="height: 100px; width: 200px;" src="" />
+
+            </td>
+            <td></td>
+        </tr>
+        <tr class="ht15"></tr>
+        <tr>
+            <td></td>
+            <td class="left">
+                &nbsp;
+                <button type="submit" class="btn btn-primary">发送</button>&emsp;
+                <button type="button" onclick="goBack()" class="btn btn-primary">返回</button>
+            </td>
+            <td></td>
+        </tr>
+    </table>
+</form>
+<script th:src="@{/js/jquery.min.js}"></script>
+<script th:src="@{/js/jquery.upload.js}"></script>
+<script th:src="@{/js/misc.js}"></script>
+<script th:inline="javascript">
+    var basePath = [[@{/}]];
+
+    Misc.loadSelect("entity-form", basePath + "/select/load");
+
+    function uploadFile() {
+        upload(function(data) {
+            $("#file").val(data);
+            $("#img-preview").attr("src", basePath + data);
+        }, basePath);
+    }
+</script>
+</body>
+</html>

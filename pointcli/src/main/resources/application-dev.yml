@@ -1,0 +1,6 @@
+server:
+  port: 8089
+  servlet:
+    context-path: /pointcli
+    session:
+      timeout: 1800

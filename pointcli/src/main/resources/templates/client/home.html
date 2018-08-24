@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/home.css}"/>
+</head>
+<body>
+    ~~~~~ client 首页~~~~~
+    <div class="remember-hint pull-right">
+        <a id="forget-password" class="" th:href="@{/logout}">退出</a>
+    </div>
+
+    <div class="remember-hint pull-right">
+        <a id="forget-password" class="" th:href="@{/workOrder/load}">load工单</a>
+    </div>
+
+<script th:src="@{/js/jquery.min.js}" ></script>
+<script th:inline="javascript">
+    $(function() {
+        //alert("js引用成功~");
+    });
+</script>
+</body>
+</html>
